@@ -36,6 +36,7 @@ COLOR_NORMAL="\\033[0;39m"
 . $ROOT/apps/DCAFPilot/etc/profile.d/init.sh
 
 export DCAFPILOT_ROOT
+export DCAFPILOT_PORT=8777
 export PYTHONUNBUFFERED=1
 export X509_USER_PROXY=$STATEDIR/proxy/proxy.cert
 export X509_USER_CERT=$X509_USER_PROXY
@@ -61,7 +62,7 @@ start()
 {
   echo "starting $ME"
   # start service
-  $DCAFPILOT_ROOT/bin/dcaf_server --port=$PORT --pdir=$PREDICTIONDIR \
+  $DCAFPILOT_ROOT/bin/dcaf_server --port=$DCAFPILOT_PORT --pdir=$PREDICTIONDIR \
       </dev/null 2>&1 | rotatelogs $LOGDIR/dcaf-%Y%m%d.log 86400 >/dev/null 2>&1 &
 }
 
