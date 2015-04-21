@@ -22,7 +22,7 @@ deploy_dcafpilot_sw()
 deploy_dcafpilot_post()
 {
   local aroot=$root/state/dcafpilot/analytics
-  mkdir -p $aroot
+  mkdir -p $aroot/data/{train,predictions}
   local arootlog=$root/logs/dcafpilot
   (mkcrontab
    echo "50 20 * * 5 source $project_config/setup.sh && \$DCAFPILOT_ROOT/bin/cron4dataframe.sh $project_config/dcaf.cfg $aroot $aroot/data/train > $arootlog/cron4dataframe.log 2>&1"
