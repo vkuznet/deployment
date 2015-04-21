@@ -21,9 +21,11 @@ deploy_dcafpilot_sw()
 
 deploy_dcafpilot_post()
 {
+  local aroot=$root/state/dcafpilot/analytics
+  local arootlog=$root/logs/dcafpilot
   (mkcrontab
-   echo "50 20 * * 5 source $project_config/setup.sh && $DCAFPILOT_ROOT/bin/cron4dataframe.sh $project_config/dcaf.cfg /data/analytics /data/analytics/data/train > /data/analytics/cron4dataframe.log 2>&1"
-   echo "15 18 * * * source $project_config/setup.sh && $DCAFPILOT_ROOT/bin/cron4models.sh /data/analytics /data/analytics/data/train > /data/analytics/cron4models.log 2>&1"
-   echo "10 3 * * * source $project_config/setup.sh && $DCAFPILOT_ROOT/bin/cron4verify.sh /data/analytics/data/predictions > /data/analytics/cron4verify.log 2>&1"
+   echo "50 20 * * 5 source $project_config/setup.sh && $DCAFPILOT_ROOT/bin/cron4dataframe.sh $project_config/dcaf.cfg $aroot $aroot/data/train > $arootlog/cron4dataframe.log 2>&1"
+   echo "15 18 * * * source $project_config/setup.sh && $DCAFPILOT_ROOT/bin/cron4models.sh $aroot $aroot/data/train > $arootlog/cron4models.log 2>&1"
+   echo "10 3 * * * source $project_config/setup.sh && $DCAFPILOT_ROOT/bin/cron4verify.sh $aroot/data/predictions > $arootlog/cron4verify.log 2>&1"
   ) | crontab -
 }
