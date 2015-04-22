@@ -52,7 +52,7 @@ host=`hostname -s`
 sysboot()
 {
   dostart=false
-  if [ $(pgrep -u $(id -u) -f "[/]dcaf_server" | wc -l) = 0 ]; then
+  if [ $(pgrep -u $(id -u) -f "[/]DCAF/web/server" | wc -l) = 0 ]; then
       dostart=true
   fi
   $dostart && start
@@ -70,7 +70,7 @@ start()
 stop()
 {
   echo "stopping $ME"
-  for pid in $(pgrep -u $(id -u) -f "[/]dcaf_server"); do
+  for pid in $(pgrep -u $(id -u) -f "[/]DCAF/web/server"); do
       kill -9 $pid
   done
 }
@@ -78,7 +78,7 @@ stop()
 # Check if the server is running.
 status()
 {
-  local pid=$(pgrep -u $(id -u) -f "[/]dcaf_server" | sort -n)
+  local pid=$(pgrep -u $(id -u) -f "[/]DCAF/web/server" | sort -n)
   if [ X"$pid" = X ]; then
     echo $echo_e "$ME $pat is ${COLOR_WARN}NOT RUNNING${COLOR_NORMAL}."
   else
