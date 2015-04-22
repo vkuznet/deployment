@@ -41,7 +41,7 @@ export PYTHONUNBUFFERED=1
 export X509_USER_PROXY=$STATEDIR/proxy/proxy.cert
 export X509_USER_CERT=$X509_USER_PROXY
 export X509_USER_KEY=$X509_USER_PROXY
-export PREDICTIONDIR=$STATEDIR/predictions
+export PREDICTIONDIR=$STATEDIR/analytics/predictions
 export DCAFPILOT_CONFIG=$ROOT/config/$ME/dcaf.cfg
 mkdir -p $PREDICTIONDIR
 
