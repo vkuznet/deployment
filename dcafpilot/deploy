@@ -15,7 +15,7 @@ deploy_dcafpilot_prep()
 
 deploy_dcafpilot_sw()
 {
-  deploy_pkg comp cms+DCAFPilot 0.1.8
+  deploy_pkg comp cms+DCAFPilot
   perl -p -i -e "s|{ROOT}|$root|" $project_config/setup.sh
 }
 
